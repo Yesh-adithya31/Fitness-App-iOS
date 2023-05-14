@@ -23,7 +23,17 @@ class HomeController: UIViewController {
         super.viewDidLoad()
         self.setupUI()
         
-        self.label.text = "Yesh Adithya\nyesh@gmail.com"
+        AuthService.shared.fetchUser { [weak self] user, error in
+            guard let self = self else { return }
+            if let error = error {
+                AlertManager.showFetchingUserError(on: self, with: error)
+                return
+            }
+            
+            if let user = user{
+                self.label.text = "\(user.username)\n\(user.email)"
+            }
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -46,6 +56,16 @@ class HomeController: UIViewController {
     }
 
     @objc private func didTapLogout(){
-        
+        AuthService.shared.signOut { [weak self] error in
+            guard let self = self else { return }
+            if let error = error {
+                AlertManager.showLogoutErrorAlert(on: self, with: error)
+                return
+            }
+            
+            if let sceneDeletgate = self.view.window?.windowScene?.delegate as? SceneDelegate {
+                sceneDeletgate.checkAuthentication()
+            }
+        }
     }
 }
