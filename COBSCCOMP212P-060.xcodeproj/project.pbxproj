@@ -7,6 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DC1C2F2D2A12104C00AF54C2 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C2F2C2A12104C00AF54C2 /* LoadingView.swift */; };
+		DC1C2F2F2A12156300AF54C2 /* GenderSelectionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C2F2E2A12156300AF54C2 /* GenderSelectionButton.swift */; };
+		DC1C2F312A1471D900AF54C2 /* GenderSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C2F302A1471D900AF54C2 /* GenderSelectionViewController.swift */; };
+		DC1C2F332A147B8C00AF54C2 /* CustomTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C2F322A147B8C00AF54C2 /* CustomTextView.swift */; };
+		DC1C2F352A1486D800AF54C2 /* BMICalculatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C2F342A1486D800AF54C2 /* BMICalculatorViewController.swift */; };
+		DC1C2F372A14957100AF54C2 /* VideoPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C2F362A14957100AF54C2 /* VideoPlayerViewController.swift */; };
+		DC1C2F392A14C7AA00AF54C2 /* ExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C2F382A14C7AA00AF54C2 /* ExerciseView.swift */; };
+		DC1C2F3B2A14C7DD00AF54C2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C2F3A2A14C7DD00AF54C2 /* ViewController.swift */; };
+		DC1C2F3D2A14E7A100AF54C2 /* WorkoutCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C2F3C2A14E7A100AF54C2 /* WorkoutCardView.swift */; };
+		DC1C2F3F2A14E7EA00AF54C2 /* WorkoutListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C2F3E2A14E7EA00AF54C2 /* WorkoutListViewController.swift */; };
+		DC1C2F412A14E87100AF54C2 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C2F402A14E87100AF54C2 /* CustomTabBarController.swift */; };
+		DC1C2F432A152C5A00AF54C2 /* SelectAgeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C2F422A152C5A00AF54C2 /* SelectAgeViewController.swift */; };
+		DC1C2F452A152C6C00AF54C2 /* SelectHeightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C2F442A152C6C00AF54C2 /* SelectHeightViewController.swift */; };
+		DC1C2F472A152C7A00AF54C2 /* SelectWeightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C2F462A152C7A00AF54C2 /* SelectWeightViewController.swift */; };
 		DCAFB2892A0F8F0700668B1B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAFB2882A0F8F0700668B1B /* AppDelegate.swift */; };
 		DCAFB28B2A0F8F0700668B1B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAFB28A2A0F8F0700668B1B /* SceneDelegate.swift */; };
 		DCAFB2922A0F8F0900668B1B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCAFB2912A0F8F0900668B1B /* Assets.xcassets */; };
@@ -33,6 +47,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DC1C2F2C2A12104C00AF54C2 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		DC1C2F2E2A12156300AF54C2 /* GenderSelectionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderSelectionButton.swift; sourceTree = "<group>"; };
+		DC1C2F302A1471D900AF54C2 /* GenderSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderSelectionViewController.swift; sourceTree = "<group>"; };
+		DC1C2F322A147B8C00AF54C2 /* CustomTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextView.swift; sourceTree = "<group>"; };
+		DC1C2F342A1486D800AF54C2 /* BMICalculatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMICalculatorViewController.swift; sourceTree = "<group>"; };
+		DC1C2F362A14957100AF54C2 /* VideoPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerViewController.swift; sourceTree = "<group>"; };
+		DC1C2F382A14C7AA00AF54C2 /* ExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseView.swift; sourceTree = "<group>"; };
+		DC1C2F3A2A14C7DD00AF54C2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		DC1C2F3C2A14E7A100AF54C2 /* WorkoutCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutCardView.swift; sourceTree = "<group>"; };
+		DC1C2F3E2A14E7EA00AF54C2 /* WorkoutListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutListViewController.swift; sourceTree = "<group>"; };
+		DC1C2F402A14E87100AF54C2 /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
+		DC1C2F422A152C5A00AF54C2 /* SelectAgeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAgeViewController.swift; sourceTree = "<group>"; };
+		DC1C2F442A152C6C00AF54C2 /* SelectHeightViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectHeightViewController.swift; sourceTree = "<group>"; };
+		DC1C2F462A152C7A00AF54C2 /* SelectWeightViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectWeightViewController.swift; sourceTree = "<group>"; };
 		DCAFB2852A0F8F0700668B1B /* COBSCCOMP212P-060.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "COBSCCOMP212P-060.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCAFB2882A0F8F0700668B1B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DCAFB28A2A0F8F0700668B1B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -122,6 +150,11 @@
 				DCAFB2A62A0F93FB00668B1B /* AuthheaderView.swift */,
 				DCAFB2A82A1096CF00668B1B /* CustomTextField.swift */,
 				DCAFB2AA2A1098B000668B1B /* CustomButton.swift */,
+				DC1C2F2C2A12104C00AF54C2 /* LoadingView.swift */,
+				DC1C2F2E2A12156300AF54C2 /* GenderSelectionButton.swift */,
+				DC1C2F322A147B8C00AF54C2 /* CustomTextView.swift */,
+				DC1C2F382A14C7AA00AF54C2 /* ExerciseView.swift */,
+				DC1C2F3C2A14E7A100AF54C2 /* WorkoutCardView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -134,6 +167,15 @@
 				DCAFB2A12A0F916E00668B1B /* RegisterController.swift */,
 				DCAFB29D2A0F911D00668B1B /* ForgetPasswordController.swift */,
 				DCAFB2C12A11125C00668B1B /* OnboardingViewController.swift */,
+				DC1C2F302A1471D900AF54C2 /* GenderSelectionViewController.swift */,
+				DC1C2F342A1486D800AF54C2 /* BMICalculatorViewController.swift */,
+				DC1C2F362A14957100AF54C2 /* VideoPlayerViewController.swift */,
+				DC1C2F3A2A14C7DD00AF54C2 /* ViewController.swift */,
+				DC1C2F3E2A14E7EA00AF54C2 /* WorkoutListViewController.swift */,
+				DC1C2F402A14E87100AF54C2 /* CustomTabBarController.swift */,
+				DC1C2F422A152C5A00AF54C2 /* SelectAgeViewController.swift */,
+				DC1C2F442A152C6C00AF54C2 /* SelectHeightViewController.swift */,
+				DC1C2F462A152C7A00AF54C2 /* SelectWeightViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -235,10 +277,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				DCAFB2C92A1132D000668B1B /* Validator.swift in Sources */,
+				DC1C2F352A1486D800AF54C2 /* BMICalculatorViewController.swift in Sources */,
 				DCAFB2C02A11082100668B1B /* User.swift in Sources */,
 				DCAFB2892A0F8F0700668B1B /* AppDelegate.swift in Sources */,
+				DC1C2F3F2A14E7EA00AF54C2 /* WorkoutListViewController.swift in Sources */,
+				DC1C2F392A14C7AA00AF54C2 /* ExerciseView.swift in Sources */,
 				DCAFB2B02A10F3BC00668B1B /* AlertManager.swift in Sources */,
+				DC1C2F3B2A14C7DD00AF54C2 /* ViewController.swift in Sources */,
+				DC1C2F2D2A12104C00AF54C2 /* LoadingView.swift in Sources */,
 				DCAFB2A42A0F919500668B1B /* HomeController.swift in Sources */,
+				DC1C2F372A14957100AF54C2 /* VideoPlayerViewController.swift in Sources */,
+				DC1C2F452A152C6C00AF54C2 /* SelectHeightViewController.swift in Sources */,
+				DC1C2F332A147B8C00AF54C2 /* CustomTextView.swift in Sources */,
+				DC1C2F432A152C5A00AF54C2 /* SelectAgeViewController.swift in Sources */,
 				DCAFB2BD2A1106FF00668B1B /* AuthService.swift in Sources */,
 				DCAFB2AB2A1098B000668B1B /* CustomButton.swift in Sources */,
 				DCAFB2A72A0F93FB00668B1B /* AuthheaderView.swift in Sources */,
@@ -247,9 +298,14 @@
 				DCAFB2A92A1096CF00668B1B /* CustomTextField.swift in Sources */,
 				DCAFB28B2A0F8F0700668B1B /* SceneDelegate.swift in Sources */,
 				DCAFB29E2A0F911D00668B1B /* ForgetPasswordController.swift in Sources */,
+				DC1C2F472A152C7A00AF54C2 /* SelectWeightViewController.swift in Sources */,
 				DCAFB2C22A11125C00668B1B /* OnboardingViewController.swift in Sources */,
+				DC1C2F312A1471D900AF54C2 /* GenderSelectionViewController.swift in Sources */,
 				DCAFB2AD2A10C4A800668B1B /* WebViewerController.swift in Sources */,
+				DC1C2F3D2A14E7A100AF54C2 /* WorkoutCardView.swift in Sources */,
 				DCAFB2A02A0F915400668B1B /* LoginController.swift in Sources */,
+				DC1C2F2F2A12156300AF54C2 /* GenderSelectionButton.swift in Sources */,
+				DC1C2F412A14E87100AF54C2 /* CustomTabBarController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
