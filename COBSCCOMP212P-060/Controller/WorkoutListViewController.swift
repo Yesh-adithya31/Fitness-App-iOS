@@ -11,21 +11,9 @@ class WorkoutListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-setupUI()
+        setupUI()
         // Do any additional setup after loading the view.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     func setupUI(){
         view.backgroundColor = UIColor(named: "LightBlack")
@@ -49,11 +37,17 @@ setupUI()
 class WorkoutViewController: UIViewController, UIScrollViewDelegate {
     let scrollView = UIScrollView()
     var lastContentOffsetY: CGFloat = 0
+    var timer: Timer?
+    
+    private let headingTextView = CustomTextView(title: "Hello Isini", fontSize: .big)
+    private let subheadingTextView = CustomTextView(title: "Loading...", fontSize: .small)
+    private let workoutTextView = CustomTextView(title: "Workout Plan", fontSize: .med)
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupScrollView()
         addWorkoutCardViews()
+        startTimer()
         
     }
     
@@ -63,16 +57,37 @@ class WorkoutViewController: UIViewController, UIScrollViewDelegate {
         
         scrollView.scrollIndicatorInsets = UIEdgeInsets.zero
         scrollView.delegate = self
+        scrollView.backgroundColor = UIColor(named: "Black")
+        scrollView.bounces = false
 
+        headingTextView.translatesAutoresizingMaskIntoConstraints = false
+        subheadingTextView.translatesAutoresizingMaskIntoConstraints = false
+        workoutTextView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.translatesAutoresizingMaskIntoConstraints = false
+        
+        view.addSubview(headingTextView)
+        view.addSubview(subheadingTextView)
+        view.addSubview(workoutTextView)
         view.addSubview(scrollView)
         
         // Set up constraints for the scroll view
         NSLayoutConstraint.activate([
-            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            self.headingTextView.topAnchor.constraint(equalTo: self.view.layoutMarginsGuide.topAnchor),
+            self.headingTextView.leadingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.leadingAnchor),
+            self.headingTextView.heightAnchor.constraint(equalToConstant: 40),
+            
+            self.subheadingTextView.topAnchor.constraint(equalTo: self.headingTextView.bottomAnchor),
+            self.subheadingTextView.leadingAnchor.constraint(equalTo: headingTextView.leadingAnchor),
+            self.subheadingTextView.heightAnchor.constraint(equalToConstant: 30),
+            
+            self.workoutTextView.topAnchor.constraint(equalTo: self.subheadingTextView.bottomAnchor, constant: 20),
+            self.workoutTextView.leadingAnchor.constraint(equalTo: subheadingTextView.leadingAnchor),
+            self.workoutTextView.heightAnchor.constraint(equalToConstant: 30),
+
+            self.scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            self.scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            self.scrollView.topAnchor.constraint(equalTo: workoutTextView.bottomAnchor, constant: 20),
+            self.scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
     
@@ -84,14 +99,14 @@ class WorkoutViewController: UIViewController, UIScrollViewDelegate {
         // Create and add workout card views to the scroll view
         // Adjust the values and layout as per your requirements
         
-        let cardHeight: CGFloat = 200
+        let cardHeight: CGFloat = 210
         let cardSpacing: CGFloat = 16
-        let numberOfCards = 10
+        let numberOfCards = workouts.count
         
-        var previousCardView: WorkoutCardView?
+        var previousCardView: WorkoutsCardView?
         
-        for _ in 0..<numberOfCards {
-            let cardView = WorkoutCardView(title: " Gryffindor Strength ", desc: " Side Leg Raises ", duration: "30 sec(15 sec per side)")
+        for i in 0..<numberOfCards {
+            let cardView = WorkoutsCardView(workout: workouts[i])
             cardView.translatesAutoresizingMaskIntoConstraints = false
             scrollView.addSubview(cardView)
             
@@ -124,5 +139,26 @@ class WorkoutViewController: UIViewController, UIScrollViewDelegate {
                 lastCardView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -cardSpacing)
             ])
         }
+    }
+    
+    func startTimer() {
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateGreeting), userInfo: nil, repeats: true)
+    }
+    
+    @objc func updateGreeting() {
+        let calendar = Calendar.current
+        let hour = calendar.component(.hour, from: Date())
+
+        var greeting: String
+        if hour < 12 {
+            greeting = "Good Morning,"
+        } else if hour < 18 {
+            greeting = "Good Afternoon,"
+        } else {
+            greeting = "Good Evening,"
+        }
+
+        // Update the UI with the greeting
+        subheadingTextView.text = greeting
     }
 }
