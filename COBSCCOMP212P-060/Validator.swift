@@ -29,4 +29,9 @@ class Validator {
         return passwordPredicate.evaluate(with: password)
     }
 
+    static func isTimeValid(for time: String) -> Bool {
+        let timeRegex = "^((1[0-2]|0?[1-9]):([0-5][0-9])\\s?(?i)(am|pm))$"
+        let timePredicate = NSPredicate(format: "SELF MATCHES %@", timeRegex)
+        return timePredicate.evaluate(with: time)
+    }
 }
