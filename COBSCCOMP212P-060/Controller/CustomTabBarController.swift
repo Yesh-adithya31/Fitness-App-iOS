@@ -26,12 +26,12 @@ class CustomTabBarController: UITabBarController, UITabBarControllerDelegate {
     
     private func setupViewControllers() {
         view.backgroundColor = UIColor(named: "LightBlack")
-        let firstViewController = HomeController()
+        let firstViewController = WorkoutViewController()
         let firstNavigationController = UINavigationController(rootViewController: firstViewController)
         firstNavigationController.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "Home"), tag: 0)
     
         
-        let secondViewController = WorkoutViewController()
+        let secondViewController = ScheduleViewController()
         let secondNavigationController = UINavigationController(rootViewController: secondViewController)
         secondNavigationController.tabBarItem = UITabBarItem(title: "Scedule", image: UIImage(named: "Insight"), tag: 1)
         

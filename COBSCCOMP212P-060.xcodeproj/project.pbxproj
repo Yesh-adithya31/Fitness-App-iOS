@@ -21,6 +21,8 @@
 		DC1C2F432A152C5A00AF54C2 /* SelectAgeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C2F422A152C5A00AF54C2 /* SelectAgeViewController.swift */; };
 		DC1C2F452A152C6C00AF54C2 /* SelectHeightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C2F442A152C6C00AF54C2 /* SelectHeightViewController.swift */; };
 		DC1C2F472A152C7A00AF54C2 /* SelectWeightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C2F462A152C7A00AF54C2 /* SelectWeightViewController.swift */; };
+		DC1C2F492A15444100AF54C2 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C2F482A15444100AF54C2 /* ScheduleViewController.swift */; };
+		DC1C2F4B2A15515200AF54C2 /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C2F4A2A15515200AF54C2 /* Workout.swift */; };
 		DCAFB2892A0F8F0700668B1B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAFB2882A0F8F0700668B1B /* AppDelegate.swift */; };
 		DCAFB28B2A0F8F0700668B1B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAFB28A2A0F8F0700668B1B /* SceneDelegate.swift */; };
 		DCAFB2922A0F8F0900668B1B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCAFB2912A0F8F0900668B1B /* Assets.xcassets */; };
@@ -61,6 +63,8 @@
 		DC1C2F422A152C5A00AF54C2 /* SelectAgeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAgeViewController.swift; sourceTree = "<group>"; };
 		DC1C2F442A152C6C00AF54C2 /* SelectHeightViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectHeightViewController.swift; sourceTree = "<group>"; };
 		DC1C2F462A152C7A00AF54C2 /* SelectWeightViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectWeightViewController.swift; sourceTree = "<group>"; };
+		DC1C2F482A15444100AF54C2 /* ScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
+		DC1C2F4A2A15515200AF54C2 /* Workout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
 		DCAFB2852A0F8F0700668B1B /* COBSCCOMP212P-060.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "COBSCCOMP212P-060.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCAFB2882A0F8F0700668B1B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DCAFB28A2A0F8F0700668B1B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -176,6 +180,7 @@
 				DC1C2F422A152C5A00AF54C2 /* SelectAgeViewController.swift */,
 				DC1C2F442A152C6C00AF54C2 /* SelectHeightViewController.swift */,
 				DC1C2F462A152C7A00AF54C2 /* SelectWeightViewController.swift */,
+				DC1C2F482A15444100AF54C2 /* ScheduleViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -184,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				DCAFB2BF2A11082100668B1B /* User.swift */,
+				DC1C2F4A2A15515200AF54C2 /* Workout.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -279,9 +285,11 @@
 				DCAFB2C92A1132D000668B1B /* Validator.swift in Sources */,
 				DC1C2F352A1486D800AF54C2 /* BMICalculatorViewController.swift in Sources */,
 				DCAFB2C02A11082100668B1B /* User.swift in Sources */,
+				DC1C2F4B2A15515200AF54C2 /* Workout.swift in Sources */,
 				DCAFB2892A0F8F0700668B1B /* AppDelegate.swift in Sources */,
 				DC1C2F3F2A14E7EA00AF54C2 /* WorkoutListViewController.swift in Sources */,
 				DC1C2F392A14C7AA00AF54C2 /* ExerciseView.swift in Sources */,
+				DC1C2F492A15444100AF54C2 /* ScheduleViewController.swift in Sources */,
 				DCAFB2B02A10F3BC00668B1B /* AlertManager.swift in Sources */,
 				DC1C2F3B2A14C7DD00AF54C2 /* ViewController.swift in Sources */,
 				DC1C2F2D2A12104C00AF54C2 /* LoadingView.swift in Sources */,
