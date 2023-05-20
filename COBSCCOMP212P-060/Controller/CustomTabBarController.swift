@@ -11,6 +11,19 @@ class CustomTabBarController: UITabBarController, UITabBarControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+//        AuthService.shared.fetchWorkouts(for: "Gryffindor Strength") { [weak self] list, error in
+//            guard let self = self else { return }
+//            if let error = error {
+////                AlertManager.showFetchingUserError(on: self, with: error)
+//                return
+//            }
+//            
+//            if let list = list{
+////                self.label.text = "\(user.username)\n\(user.email)"
+//                print("Datils List: \(list)")
+//            }
+//        }
         
         setupTabBar()
         setupViewControllers()
@@ -35,34 +48,35 @@ class CustomTabBarController: UITabBarController, UITabBarControllerDelegate {
         let secondNavigationController = UINavigationController(rootViewController: secondViewController)
         secondNavigationController.tabBarItem = UITabBarItem(title: "Scedule", image: UIImage(named: "Insight"), tag: 1)
         
-        let thirdViewController = GenderSelectionViewController()
+        let thirdViewController = ProfileViewController()
         let thirdNavigationController = UINavigationController(rootViewController: thirdViewController)
         thirdNavigationController.tabBarItem = UITabBarItem(title: "Notification", image: UIImage(named: "Notification"), tag: 2)
         
         viewControllers = [firstNavigationController, secondNavigationController, thirdNavigationController]
     }
     
-    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        if let selectedIndex = tabBarController.viewControllers?.firstIndex(of: viewController) {
-            // Perform actions based on the selected index
-            switch selectedIndex {
-            case 0:
-                // Handle selection of the first view controller (Home)
-                // Show or perform actions for the Home view controller
-                print("Selected Home")
-            case 1:
-                // Handle selection of the second view controller (Profile)
-                // Show or perform actions for the Profile view controller
-                print("Selected Profile")
-            case 2:
-                // Handle selection of the second view controller (Profile)
-                // Show or perform actions for the Profile view controller
-                print("Selected Scedule")
-            default:
-                break
-            }
-        }
-    }
+//    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+//        if let selectedIndex = tabBarController.viewControllers?.firstIndex(of: viewController) {
+//            // Perform actions based on the selected index
+//            switch selectedIndex {
+//            case 0:
+//                // Handle selection of the first view controller (Home)
+//                // Show or perform actions for the Home view controller
+//                print("Selected Home")
+//            case 1:
+//                // Handle selection of the second view controller (Profile)
+//                // Show or perform actions for the Profile view controller
+//                print("Selected Scedule")
+//            case 2:
+//                // Handle selection of the second view controller (Profile)
+//                // Show or perform actions for the Profile view controller
+//                print("Selected Profile")
+//            default:
+//                break
+//            }
+//        }
+//    }
+    
 }
 
 

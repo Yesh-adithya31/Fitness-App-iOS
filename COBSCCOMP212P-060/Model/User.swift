@@ -17,6 +17,12 @@ struct FetchUser {
     let username: String
     let email: String
     let userUID: String
+    let gender: String
+    let age: String
+    let height: String
+    let weight: String
+    let goal: String
+    let activity_level: String
 }
 
 struct LoginUserRequest {

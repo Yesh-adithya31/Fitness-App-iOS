@@ -7,53 +7,95 @@
 
 import UIKit
 
-class WorkoutListViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupUI()
-        // Do any additional setup after loading the view.
-    }
-    
-    func setupUI(){
-        view.backgroundColor = UIColor(named: "LightBlack")
-        let workoutCardView = WorkoutCardView(title: " Gryffindor Strength ", desc: " Side Leg Raises ", duration: "30 sec(15 sec per side)")
-        workoutCardView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(workoutCardView)
-
-        // Apply constraints to position the card view within the view controller's view
-        NSLayoutConstraint.activate([
-            workoutCardView.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
-            workoutCardView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            workoutCardView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            workoutCardView.heightAnchor.constraint(equalToConstant: 200)
-        ])
-
-    }
-
-}
+//class WorkoutListViewController: UIViewController {
+//
+//
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//        setupUI()
+//        // Do any additional setup after loading the view.
+//    }
+//
+//    func setupUI(){
+//        view.backgroundColor = UIColor(named: "LightBlack")
+//        let workoutCardView = WorkoutCardView(title: " Gryffindor Strength ", desc: " Side Leg Raises ", duration: "30 sec(15 sec per side)")
+//        workoutCardView.translatesAutoresizingMaskIntoConstraints = false
+//        view.addSubview(workoutCardView)
+//
+//        // Apply constraints to position the card view within the view controller's view
+//        NSLayoutConstraint.activate([
+//            workoutCardView.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
+//            workoutCardView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+//            workoutCardView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+//            workoutCardView.heightAnchor.constraint(equalToConstant: 200)
+//        ])
+//
+//    }
+//
+//}
 
 
 class WorkoutViewController: UIViewController, UIScrollViewDelegate {
+    private var loadingView: LoadingView!
     let scrollView = UIScrollView()
     var lastContentOffsetY: CGFloat = 0
     var timer: Timer?
     
-    private let headingTextView = CustomTextView(title: "Hello Isini", fontSize: .big)
+    private let headingTextView = CustomTextView(title: "Hello Loading...", fontSize: .big)
     private let subheadingTextView = CustomTextView(title: "Loading...", fontSize: .small)
     private let workoutTextView = CustomTextView(title: "Workout Plan", fontSize: .med)
+    
+    private var wokroutMainList = [WorkoutMainList]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupScrollView()
-        addWorkoutCardViews()
         startTimer()
+        loadingView.isHidden = false
+        AuthService.shared.fetchUser { [weak self] user, error in
+            guard let self = self else { return }
+            if let error = error {
+                loadingView.isHidden = true
+                AlertManager.showFetchingUserError(on: self, with: error)
+                return
+            }
+            
+            if let user = user{
+                loadingView.isHidden = true
+                self.headingTextView.text = "Hello \(user.username)"
+            }
+            
+        }
         
+        AuthService.shared.fetchMainWorkouts { [weak self] list, error in
+            guard let self = self else { return }
+            if let error = error {
+                loadingView.isHidden = true
+                AlertManager.showFetchingWorkoutsError(on: self, with: error)
+                return
+            }
+            
+            if let list = list{
+                loadingView.isHidden = true
+                wokroutMainList = list
+                addWorkoutCardViews(for: list)
+                print(list)
+            }
+        }
+                
     }
     
     private func setupScrollView() {
         view.backgroundColor = UIColor(named: "Black")
         navigationController?.setNavigationBarHidden(true, animated: true)
+        
+        // Create the loading view
+        loadingView = LoadingView(frame: view.bounds)
+        loadingView.isHidden = true
+        loadingView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        // Add the loading view as a subview
+        view.addSubview(loadingView)
+
         
         scrollView.scrollIndicatorInsets = UIEdgeInsets.zero
         scrollView.delegate = self
@@ -95,18 +137,22 @@ class WorkoutViewController: UIViewController, UIScrollViewDelegate {
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
-    private func addWorkoutCardViews() {
+    private func addWorkoutCardViews(for workoutsData: [WorkoutMainList]) {
         // Create and add workout card views to the scroll view
         // Adjust the values and layout as per your requirements
         
         let cardHeight: CGFloat = 210
         let cardSpacing: CGFloat = 16
-        let numberOfCards = workouts.count
+        let numberOfCards = workoutsData.count
         
         var previousCardView: WorkoutsCardView?
         
         for i in 0..<numberOfCards {
-            let cardView = WorkoutsCardView(workout: workouts[i])
+            let cardView = WorkoutsCardView(for: workoutsData[i])
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(viewItemTapped(_:)))
+            cardView.addGestureRecognizer(tapGesture)
+            cardView.tag = workoutsData[i].ID
+            
             cardView.translatesAutoresizingMaskIntoConstraints = false
             scrollView.addSubview(cardView)
             
@@ -129,8 +175,10 @@ class WorkoutViewController: UIViewController, UIScrollViewDelegate {
                     cardView.topAnchor.constraint(equalTo: scrollView.topAnchor)
                 ])
             }
+        
             
             previousCardView = cardView
+            
         }
         
         // Set the last card view's bottom constraint to the scroll view's bottom anchor
@@ -139,6 +187,8 @@ class WorkoutViewController: UIViewController, UIScrollViewDelegate {
                 lastCardView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -cardSpacing)
             ])
         }
+        
+
     }
     
     func startTimer() {
@@ -160,5 +210,19 @@ class WorkoutViewController: UIViewController, UIScrollViewDelegate {
 
         // Update the UI with the greeting
         subheadingTextView.text = greeting
+    }
+    
+    @objc func viewItemTapped(_ gestureRecognizer: UITapGestureRecognizer) {
+        guard let selectedView = gestureRecognizer.view,
+              let selectedItem = wokroutMainList.first(where: { $0.ID == selectedView.tag }) else {
+            return
+        }
+        
+        // Perform navigation to the detail page with modal values
+        let vc = DetailViewController()
+        vc.selectedItemTitle = selectedItem // Set your modal values
+        
+        // Present the detail view controller
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }

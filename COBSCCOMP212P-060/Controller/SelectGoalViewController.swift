@@ -1,18 +1,18 @@
 //
-//  SelectHeightViewController.swift
+//  SelectGoalViewController.swift
 //  COBSCCOMP212P-060
 //
-//  Created by day munasinghe on 2023-05-17.
+//  Created by day munasinghe on 2023-05-19.
 //
 
 import UIKit
 
-class SelectHeightViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+class SelectGoalViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     private var pickerView: UIPickerView!
     private let nextButton = CustomButton(title: "Next ▶", hasBackground: true, fontSize: .big)
-    private let headingTextView = CustomTextView(title: "What’s your height?", fontSize: .big)
+    private let headingTextView = CustomTextView(title: "What’s your goal?", fontSize: .big)
     private let subheadingTextView = CustomTextView(title: "This helps us create your personalized plan", fontSize: .small)
-    private var options: [String] = ["148 cm", "149 cm", "150 cm","151 cm", "152 cm", "153 cm","154 cm", "155 cm", "156 cm","157 cm", "158 cm", "159 cm","160 cm", "161 cm", "162 cm","163 cm", "164 cm", "165 cm","166 cm", "167 cm", "168 cm", "169 cm", "170 cm", "171 cm", "172 cm", "173 cm", "174 cm","175 cm", "176 cm", "177 cm", "178 cm", "179 cm", "180 cm"]
+    private var options: [String] = ["Gain Weight", "Lose weight", "Get fitter","Gain more flexible", "Learn the basic"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,21 +79,12 @@ func setupUI(){
         let selectedOption = options[row] // Handle the selected option
         print("Selected option: \(selectedOption)")
     }
-
-//        func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-//            let title = options[row]
-//            let attributes: [NSAttributedString.Key: Any] = [
-//                .foregroundColor: UIColor.white, // Customize the text color here
-//                .font: UIFont.systemFont(ofSize: 30, weight: .bold)
-//            ]
-//
-//            return NSAttributedString(string: title, attributes: attributes)
-//        }
+    
 func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
     let label = UILabel()
     label.textAlignment = .center
     label.textColor = UIColor(named: "Green")
-    label.font = UIFont.systemFont(ofSize: 30) // Adjust the font size as desired
+    label.font = UIFont.systemFont(ofSize: 26) // Adjust the font size as desired
     let selectedOption = options[row]
     label.text = selectedOption// Provide the text for the row
     

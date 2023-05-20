@@ -91,3 +91,27 @@ extension AlertManager {
         self.showAlertMessage(on: vc, with: "Unknown Error Fetching User", and: nil)
     }
 }
+
+// MARK: - Fetching user errors
+extension AlertManager {
+    
+    public static func showFetchingWorkoutsError(on vc: UIViewController, with error: Error){
+        self.showAlertMessage(on: vc, with: "Error Fetching Workouts List", and: "\(error.localizedDescription)")
+    }
+}
+
+// MARK: - Fetching Schedule errors
+extension AlertManager {
+    
+    public static func showCreatingScheduleError(on vc: UIViewController, with error: Error){
+        self.showAlertMessage(on: vc, with: "Error Creating Schedule List", and: "\(error.localizedDescription)")
+    }
+    
+    public static func showFetchingScheduleError(on vc: UIViewController, with error: Error){
+        self.showAlertMessage(on: vc, with: "Error Fetching Schedule List", and: "\(error.localizedDescription)")
+    }
+    
+    public static func showCreateScheduleSuccessAlert(on vc: UIViewController){
+        self.showAlertMessage(on: vc, with: "Data saved successfully", and: "You entered data saved into database.")
+    }
+}

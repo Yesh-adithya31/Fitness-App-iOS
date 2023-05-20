@@ -23,6 +23,13 @@
 		DC1C2F472A152C7A00AF54C2 /* SelectWeightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C2F462A152C7A00AF54C2 /* SelectWeightViewController.swift */; };
 		DC1C2F492A15444100AF54C2 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C2F482A15444100AF54C2 /* ScheduleViewController.swift */; };
 		DC1C2F4B2A15515200AF54C2 /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C2F4A2A15515200AF54C2 /* Workout.swift */; };
+		DC1C2F4D2A174F8600AF54C2 /* SelectGoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C2F4C2A174F8600AF54C2 /* SelectGoalViewController.swift */; };
+		DC1C2F4F2A1750B100AF54C2 /* SelectActivityLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C2F4E2A1750B100AF54C2 /* SelectActivityLevelViewController.swift */; };
+		DC1C2F512A17851A00AF54C2 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C2F502A17851A00AF54C2 /* ProfileViewController.swift */; };
+		DC1C2F532A17876800AF54C2 /* ProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C2F522A17876800AF54C2 /* ProfileHeader.swift */; };
+		DC1C2F552A18751000AF54C2 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C2F542A18751000AF54C2 /* DetailViewController.swift */; };
+		DC1C2F572A18A8D700AF54C2 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C2F562A18A8D700AF54C2 /* Schedule.swift */; };
+		DC1C2F592A18B5A700AF54C2 /* DetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C2F582A18B5A700AF54C2 /* DetailHeaderView.swift */; };
 		DCAFB2892A0F8F0700668B1B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAFB2882A0F8F0700668B1B /* AppDelegate.swift */; };
 		DCAFB28B2A0F8F0700668B1B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAFB28A2A0F8F0700668B1B /* SceneDelegate.swift */; };
 		DCAFB2922A0F8F0900668B1B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCAFB2912A0F8F0900668B1B /* Assets.xcassets */; };
@@ -65,6 +72,13 @@
 		DC1C2F462A152C7A00AF54C2 /* SelectWeightViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectWeightViewController.swift; sourceTree = "<group>"; };
 		DC1C2F482A15444100AF54C2 /* ScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
 		DC1C2F4A2A15515200AF54C2 /* Workout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
+		DC1C2F4C2A174F8600AF54C2 /* SelectGoalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectGoalViewController.swift; sourceTree = "<group>"; };
+		DC1C2F4E2A1750B100AF54C2 /* SelectActivityLevelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectActivityLevelViewController.swift; sourceTree = "<group>"; };
+		DC1C2F502A17851A00AF54C2 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		DC1C2F522A17876800AF54C2 /* ProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeader.swift; sourceTree = "<group>"; };
+		DC1C2F542A18751000AF54C2 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		DC1C2F562A18A8D700AF54C2 /* Schedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
+		DC1C2F582A18B5A700AF54C2 /* DetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHeaderView.swift; sourceTree = "<group>"; };
 		DCAFB2852A0F8F0700668B1B /* COBSCCOMP212P-060.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "COBSCCOMP212P-060.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCAFB2882A0F8F0700668B1B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DCAFB28A2A0F8F0700668B1B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -159,6 +173,8 @@
 				DC1C2F322A147B8C00AF54C2 /* CustomTextView.swift */,
 				DC1C2F382A14C7AA00AF54C2 /* ExerciseView.swift */,
 				DC1C2F3C2A14E7A100AF54C2 /* WorkoutCardView.swift */,
+				DC1C2F522A17876800AF54C2 /* ProfileHeader.swift */,
+				DC1C2F582A18B5A700AF54C2 /* DetailHeaderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -171,16 +187,20 @@
 				DCAFB2A12A0F916E00668B1B /* RegisterController.swift */,
 				DCAFB29D2A0F911D00668B1B /* ForgetPasswordController.swift */,
 				DCAFB2C12A11125C00668B1B /* OnboardingViewController.swift */,
-				DC1C2F302A1471D900AF54C2 /* GenderSelectionViewController.swift */,
 				DC1C2F342A1486D800AF54C2 /* BMICalculatorViewController.swift */,
 				DC1C2F362A14957100AF54C2 /* VideoPlayerViewController.swift */,
 				DC1C2F3A2A14C7DD00AF54C2 /* ViewController.swift */,
 				DC1C2F3E2A14E7EA00AF54C2 /* WorkoutListViewController.swift */,
 				DC1C2F402A14E87100AF54C2 /* CustomTabBarController.swift */,
+				DC1C2F302A1471D900AF54C2 /* GenderSelectionViewController.swift */,
 				DC1C2F422A152C5A00AF54C2 /* SelectAgeViewController.swift */,
 				DC1C2F442A152C6C00AF54C2 /* SelectHeightViewController.swift */,
 				DC1C2F462A152C7A00AF54C2 /* SelectWeightViewController.swift */,
+				DC1C2F4C2A174F8600AF54C2 /* SelectGoalViewController.swift */,
+				DC1C2F4E2A1750B100AF54C2 /* SelectActivityLevelViewController.swift */,
 				DC1C2F482A15444100AF54C2 /* ScheduleViewController.swift */,
+				DC1C2F502A17851A00AF54C2 /* ProfileViewController.swift */,
+				DC1C2F542A18751000AF54C2 /* DetailViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -190,6 +210,7 @@
 			children = (
 				DCAFB2BF2A11082100668B1B /* User.swift */,
 				DC1C2F4A2A15515200AF54C2 /* Workout.swift */,
+				DC1C2F562A18A8D700AF54C2 /* Schedule.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -290,6 +311,7 @@
 				DC1C2F3F2A14E7EA00AF54C2 /* WorkoutListViewController.swift in Sources */,
 				DC1C2F392A14C7AA00AF54C2 /* ExerciseView.swift in Sources */,
 				DC1C2F492A15444100AF54C2 /* ScheduleViewController.swift in Sources */,
+				DC1C2F532A17876800AF54C2 /* ProfileHeader.swift in Sources */,
 				DCAFB2B02A10F3BC00668B1B /* AlertManager.swift in Sources */,
 				DC1C2F3B2A14C7DD00AF54C2 /* ViewController.swift in Sources */,
 				DC1C2F2D2A12104C00AF54C2 /* LoadingView.swift in Sources */,
@@ -297,10 +319,14 @@
 				DC1C2F372A14957100AF54C2 /* VideoPlayerViewController.swift in Sources */,
 				DC1C2F452A152C6C00AF54C2 /* SelectHeightViewController.swift in Sources */,
 				DC1C2F332A147B8C00AF54C2 /* CustomTextView.swift in Sources */,
+				DC1C2F572A18A8D700AF54C2 /* Schedule.swift in Sources */,
 				DC1C2F432A152C5A00AF54C2 /* SelectAgeViewController.swift in Sources */,
+				DC1C2F4F2A1750B100AF54C2 /* SelectActivityLevelViewController.swift in Sources */,
+				DC1C2F552A18751000AF54C2 /* DetailViewController.swift in Sources */,
 				DCAFB2BD2A1106FF00668B1B /* AuthService.swift in Sources */,
 				DCAFB2AB2A1098B000668B1B /* CustomButton.swift in Sources */,
 				DCAFB2A72A0F93FB00668B1B /* AuthheaderView.swift in Sources */,
+				DC1C2F592A18B5A700AF54C2 /* DetailHeaderView.swift in Sources */,
 				DCAFB2A22A0F916E00668B1B /* RegisterController.swift in Sources */,
 				DCAFB2C52A1118D400668B1B /* OnBoardFirstViewController.swift in Sources */,
 				DCAFB2A92A1096CF00668B1B /* CustomTextField.swift in Sources */,
@@ -312,6 +338,8 @@
 				DCAFB2AD2A10C4A800668B1B /* WebViewerController.swift in Sources */,
 				DC1C2F3D2A14E7A100AF54C2 /* WorkoutCardView.swift in Sources */,
 				DCAFB2A02A0F915400668B1B /* LoginController.swift in Sources */,
+				DC1C2F4D2A174F8600AF54C2 /* SelectGoalViewController.swift in Sources */,
+				DC1C2F512A17851A00AF54C2 /* ProfileViewController.swift in Sources */,
 				DC1C2F2F2A12156300AF54C2 /* GenderSelectionButton.swift in Sources */,
 				DC1C2F412A14E87100AF54C2 /* CustomTabBarController.swift in Sources */,
 			);
