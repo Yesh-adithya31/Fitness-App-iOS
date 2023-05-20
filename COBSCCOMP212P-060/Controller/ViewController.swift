@@ -78,12 +78,12 @@ import UIKit
 
 
 class ViewController: UIViewController {
-    let workoutView = WorkoutView()
+    let workoutView = ProfileHeader()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        workoutView.startWorkout()
+//        workoutView.startWorkout()
     }
 
     private func setupUI() {
@@ -93,68 +93,12 @@ class ViewController: UIViewController {
         workoutView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            workoutView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            workoutView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+            workoutView.topAnchor.constraint(equalTo: self.view.layoutMarginsGuide.topAnchor),
+            workoutView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            workoutView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            workoutView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
         ])
     }
 
 }
 
-
-class BottomNavigationViewController: UIViewController {
-    private let tabBar = UITabBar()
-    private let homeTabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 0)
-    private let searchTabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 1)
-    private let settingsTabBarItem = UITabBarItem(tabBarSystemItem: .more, tag: 2)
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        configureUI()
-        addConstraints()
-    }
-    
-    private func configureUI() {
-        view.backgroundColor = UIColor(named: "Black")
-        
-        tabBar.translatesAutoresizingMaskIntoConstraints = false
-        tabBar.tintColor = .systemBlue
-        tabBar.delegate = self
-        
-        tabBar.items = [homeTabBarItem, searchTabBarItem, settingsTabBarItem]
-        
-        view.addSubview(tabBar)
-    }
-    
-    private func addConstraints() {
-        NSLayoutConstraint.activate([
-            tabBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tabBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tabBar.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-        ])
-    }
-}
-
-extension BottomNavigationViewController: UITabBarDelegate {
-    func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        // Handle tab bar item selection here
-        switch item.tag {
-        case 0:
-            // Home tab selected
-            // Perform necessary actions
-            break
-        case 1:
-            // Search tab selected
-            // Perform necessary actions
-            break
-        case 2:
-            // Settings tab selected
-            // Perform necessary actions
-            break
-        default:
-            break
-        }
-    }
-    
-
-}

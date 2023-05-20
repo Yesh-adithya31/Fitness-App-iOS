@@ -15,7 +15,7 @@ class GenderSelectionViewController: UIViewController {
         private let buttonTitles = ["Male", "Female"]
         private var gender = ""
         private var buttons: [GenderSelectionButton] = []
-        private let nextButton = CustomButton(title: "Next", hasBackground: true, fontSize: .big)
+        private let nextButton = CustomButton(title: "Next ▶", hasBackground: true, fontSize: .big)
         private let headingTextView = CustomTextView(title: "Tell us about yourself!", fontSize: .big)
     private let subheadingTextView = CustomTextView(title: "To give you a better experience we need to know your gender", fontSize: .small)
     

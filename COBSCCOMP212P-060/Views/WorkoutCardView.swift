@@ -110,7 +110,7 @@ class WorkoutsCardView: UIView {
         return label
     }()
     
-    init(workout: Workout) {
+    init(for workout: WorkoutMainList) {
         super.init(frame: .zero)
         setupView()
         configure(with: workout)
@@ -149,9 +149,98 @@ class WorkoutsCardView: UIView {
         descriptionLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16).isActive = true
     }
     
-    private func configure(with workout: Workout) {
-        imageView.image = workout.image
+    private func configure(with workout: WorkoutMainList) {
+        if let imageUrl = URL(string: workout.url) {
+            // Create a URLSession data task to fetch the image data from the URL
+            URLSession.shared.dataTask(with: imageUrl) { (data, response, error) in
+                // Check for any errors
+                if let error = error {
+                    print("Error downloading image: \(error)")
+                    return
+                }
+                
+                // Check if the response is valid and the data exists
+                if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode != 200 {
+                    print("Invalid response: \(httpResponse.statusCode)")
+                    return
+                }
+                
+                if let imageData = data {
+                    // Create a UIImage from the downloaded image data
+                    if let image = UIImage(data: imageData) {
+                        // Update the UIImageView on the main thread
+                        DispatchQueue.main.async {
+                            self.imageView.image = image
+                        }
+                    } else {
+                        print("Failed to create UIImage from image data")
+                    }
+                } else {
+                    print("No image data received")
+                }
+            }.resume() // Start the data task
+        } else {
+            print("Invalid image URL")
+        }
+//        imageView.image = workout.image
         titleLabel.text = workout.title
-        descriptionLabel.text = workout.description
+        descriptionLabel.text =  "| ⏱\(workout.duration) -  ♨️\(workout.burn_cal)"
+    }
+}
+
+
+class SubWorkoutCardView: UIView {
+    let titleLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
+        label.textColor = UIColor(named: "White")
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    let durationLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 14, weight: .light)
+        label.textColor = UIColor(named: "Green")
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    init(title: String, duration: String) {
+        super.init(frame: .zero)
+        self.titleLabel.text = title
+        self.durationLabel.text = "⏱ Duration: \(duration) sec"
+        self.setupUI()
+    }
+    
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
+    private func setupUI() {
+        backgroundColor = UIColor(named: "LightBlack")
+        layer.cornerRadius = 10
+        layer.masksToBounds = true
+        // Add subviews
+        addSubview(titleLabel)
+        addSubview(durationLabel)
+        
+        // Apply constraints
+        NSLayoutConstraint.activate([
+            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10),
+            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
+            
+            durationLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 4),
+            durationLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            durationLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            durationLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16)
+        ])
+        
     }
 }
