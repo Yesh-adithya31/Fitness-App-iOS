@@ -183,6 +183,25 @@ class AuthService  {
         }
     }
     
+    public func updateUser(valTitle: String,value: String ,completion: @escaping ( Bool, Error?) -> Void){
+        guard let userUID = Auth.auth().currentUser?.uid else { return }
+        
+        let db = Firestore.firestore()
+        let collectionRef = db.collection("users")
+        let documentRef = collectionRef.document(userUID)
+        let updatedData: [String: Any] = [
+            valTitle: value
+        ]
+        documentRef.updateData(updatedData) { error in
+            if let error = error {
+                completion(false, error)
+            } else {
+                completion(true, nil)
+            }
+        }
+        
+    }
+    
     public func fetchMainWorkouts(completion: @escaping ([WorkoutMainList]?, Error?) -> Void){
         // Create a Firestore reference to the Firestore database
         var workout = [WorkoutMainList]()
@@ -257,7 +276,7 @@ class AuthService  {
                 let data = document.data()
                 // Process the retrieved data here
                 // Access specific fields using the data dictionary
-                let id = document.documentID
+                let id = data["id"] as? String
                 let title = data["title"] as? String
                 let duration = data["duration"] as? String
                 let instruction = data["instruction"] as? String
@@ -266,7 +285,7 @@ class AuthService  {
                 let video_url = data["video_url"] as? String
                 
                 // Do further processing or store the retrieved data as needed
-                warmup.append(WorkoutList(ID: id,
+                warmup.append(WorkoutList(ID: Int(id!)!,
                                            body_part: body_part!,
                                            duration: Int(duration!) ?? 0,
                                            instruction: instruction!,
@@ -292,7 +311,7 @@ class AuthService  {
                            let data = document.data()
                            // Process the retrieved data here
                            // Access specific fields using the data dictionary
-                           let id = document.documentID
+                           let id = data["id"] as? String
                            let title = data["title"] as? String
                            let duration = data["duration"] as? String
                            let instruction = data["instruction"] as? String
@@ -301,7 +320,7 @@ class AuthService  {
                            let video_url = data["video_url"] as? String
                            
                            // Do further processing or store the retrieved data as needed
-                           workout.append(WorkoutList(ID: id,
+                           workout.append(WorkoutList(ID: Int(id!)!,
                                                       body_part: body_part!,
                                                       duration: Int(duration!) ?? 0,
                                                       instruction: instruction!,
@@ -327,7 +346,7 @@ class AuthService  {
                                             let data = document.data()
                                             // Process the retrieved data here
                                             // Access specific fields using the data dictionary
-                                            let id = document.documentID
+                                            let id = data["id"] as? String
                                             let title = data["title"] as? String
                                             let duration = data["duration"] as? String
                                             let instruction = data["instruction"] as? String
@@ -336,7 +355,7 @@ class AuthService  {
                                             let video_url = data["video_url"] as? String
                                             
                                             // Do further processing or store the retrieved data as needed
-                                            cooldown.append(WorkoutList(ID: id,
+                                            cooldown.append(WorkoutList(ID: Int(id!)!,
                                                                        body_part: body_part!,
                                                                        duration: Int(duration!) ?? 0,
                                                                        instruction: instruction!,

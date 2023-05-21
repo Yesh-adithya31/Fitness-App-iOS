@@ -8,6 +8,7 @@
 import UIKit
 
 class SelectAgeViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+        private var age = ""
         private var pickerView: UIPickerView!
         private let nextButton = CustomButton(title: "Next ▶", hasBackground: true, fontSize: .big)
         private let headingTextView = CustomTextView(title: "How old are you ?", fontSize: .big)
@@ -56,7 +57,21 @@ class SelectAgeViewController: UIViewController, UIPickerViewDataSource, UIPicke
     }
     
     @objc func didTapNext() {
-
+        DispatchQueue.main.asyncAfter(deadline: .now()) {
+            AuthService.shared.updateUser(valTitle: "age", value: self.age) { [weak self] wasAge,error in
+                guard let self = self else { return }
+                if let error = error {
+                    AlertManager.showFetchingUserError(on: self, with: error)
+                    return
+                }
+                if wasAge{
+                    let vc = SelectHeightViewController()
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }else {
+                    AlertManager.showRegistrationErrorAlert(on: self)
+                }
+            }
+        }
     }
     
         // MARK: - UIPickerViewDataSource
@@ -78,6 +93,7 @@ class SelectAgeViewController: UIViewController, UIPickerViewDataSource, UIPicke
         func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
             let selectedOption = options[row] // Handle the selected option
             print("Selected option: \(selectedOption)")
+            age = "\(selectedOption)"
         }
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {

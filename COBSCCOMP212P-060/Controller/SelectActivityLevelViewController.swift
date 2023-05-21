@@ -8,6 +8,7 @@
 import UIKit
 
 class SelectActivityLevelViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+    private var activityLevel = ""
     private var pickerView: UIPickerView!
     private let nextButton = CustomButton(title: "Final Step", hasBackground: true, fontSize: .big)
     private let headingTextView = CustomTextView(title: "Your regular physical activity level?", fontSize: .big)
@@ -56,7 +57,22 @@ func setupUI(){
 }
 
 @objc func didTapNext() {
-
+    DispatchQueue.main.asyncAfter(deadline: .now()) {
+        AuthService.shared.updateUser(valTitle: "activity_level", value: self.activityLevel) { [weak self] wasRegistered,error in
+            guard let self = self else { return }
+            if let error = error {
+                AlertManager.showFetchingUserError(on: self, with: error)
+                return
+            }
+            if wasRegistered{
+                if let sceneDeletgate = self.view.window?.windowScene?.delegate as? SceneDelegate {
+                    sceneDeletgate.checkAuthentication()
+                }
+            }else {
+                AlertManager.showRegistrationErrorAlert(on: self)
+            }
+        }
+    }
 }
 
     // MARK: - UIPickerViewDataSource
@@ -78,6 +94,7 @@ func setupUI(){
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let selectedOption = options[row] // Handle the selected option
         print("Selected option: \(selectedOption)")
+        activityLevel = selectedOption
     }
     
 func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {

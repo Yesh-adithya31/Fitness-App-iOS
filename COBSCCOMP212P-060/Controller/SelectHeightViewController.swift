@@ -8,6 +8,7 @@
 import UIKit
 
 class SelectHeightViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+    private var height = ""
     private var pickerView: UIPickerView!
     private let nextButton = CustomButton(title: "Next ▶", hasBackground: true, fontSize: .big)
     private let headingTextView = CustomTextView(title: "What’s your height?", fontSize: .big)
@@ -56,7 +57,21 @@ func setupUI(){
 }
 
 @objc func didTapNext() {
-
+    DispatchQueue.main.asyncAfter(deadline: .now()) {
+        AuthService.shared.updateUser(valTitle: "height", value: self.height) { [weak self] wasHeight,error in
+            guard let self = self else { return }
+            if let error = error {
+                AlertManager.showFetchingUserError(on: self, with: error)
+                return
+            }
+            if wasHeight{
+                let vc = SelectWeightViewController()
+                self.navigationController?.pushViewController(vc, animated: true)
+            }else {
+                AlertManager.showRegistrationErrorAlert(on: self)
+            }
+        }
+    }
 }
 
     // MARK: - UIPickerViewDataSource
@@ -78,6 +93,7 @@ func setupUI(){
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let selectedOption = options[row] // Handle the selected option
         print("Selected option: \(selectedOption)")
+        height = "\(selectedOption)"
     }
 
 //        func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {

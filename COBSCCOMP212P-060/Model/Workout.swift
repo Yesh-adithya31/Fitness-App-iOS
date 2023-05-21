@@ -26,7 +26,7 @@ let workouts: [Workout] = [
 ]
 
 struct WorkoutList {
-    let ID: String
+    let ID: Int
     let body_part: String
     let duration: Int
     let instruction: String

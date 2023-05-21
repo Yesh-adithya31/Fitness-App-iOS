@@ -8,6 +8,7 @@
 import UIKit
 
 class SelectGoalViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+    private var goal = ""
     private var pickerView: UIPickerView!
     private let nextButton = CustomButton(title: "Next ▶", hasBackground: true, fontSize: .big)
     private let headingTextView = CustomTextView(title: "What’s your goal?", fontSize: .big)
@@ -56,7 +57,21 @@ func setupUI(){
 }
 
 @objc func didTapNext() {
-
+    DispatchQueue.main.asyncAfter(deadline: .now()) {
+        AuthService.shared.updateUser(valTitle: "goal", value: self.goal) { [weak self] wasGoal,error in
+            guard let self = self else { return }
+            if let error = error {
+                AlertManager.showFetchingUserError(on: self, with: error)
+                return
+            }
+            if wasGoal{
+                let vc = SelectActivityLevelViewController()
+                self.navigationController?.pushViewController(vc, animated: true)
+            }else {
+                AlertManager.showRegistrationErrorAlert(on: self)
+            }
+        }
+    }
 }
 
     // MARK: - UIPickerViewDataSource
@@ -78,6 +93,7 @@ func setupUI(){
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let selectedOption = options[row] // Handle the selected option
         print("Selected option: \(selectedOption)")
+        goal = "\(selectedOption)"
     }
     
 func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {

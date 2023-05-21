@@ -87,7 +87,22 @@ class GenderSelectionViewController: UIViewController {
         }
     
         @objc func didTapNext() {
-            print("\(gender)")
+            DispatchQueue.main.asyncAfter(deadline: .now()) {
+                AuthService.shared.updateUser(valTitle: "gender", value: self.gender) { [weak self] wasGender,error in
+                    guard let self = self else { return }
+                    if let error = error {
+                        AlertManager.showFetchingUserError(on: self, with: error)
+                        return
+                    }
+                    if wasGender{
+                        let vc = SelectAgeViewController()
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }else {
+                        AlertManager.showRegistrationErrorAlert(on: self)
+                    }
+                    
+                }
+            }
 
         }
     

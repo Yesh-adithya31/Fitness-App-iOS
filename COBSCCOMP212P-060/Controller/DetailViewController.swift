@@ -16,6 +16,10 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
     private let subheadingWarkoutView = CustomTextView(title: "Workout", fontSize: .med)
     private let subheadingCoolDownView = CustomTextView(title: "Cool Down", fontSize: .med)
     
+    private var wormupList = [WorkoutList]()
+    private var workoutList = [WorkoutList]()
+    private var cooldownList = [WorkoutList]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(named: "Black")
@@ -33,6 +37,9 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
                 if let warmup = warmup{
                     if let workout = workout{
                         if let cooldown = cooldown {
+                            wormupList = warmup
+                            workoutList = workout
+                            cooldownList = cooldown
                             addWarmUpViews(wormupData: warmup, workoutData: workout, cooldown: cooldown)
                         }
                     }
@@ -90,9 +97,9 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
         // MARK: WARM UP
         for i in 0..<numberOfCards {
             let warmupCardView = SubWorkoutCardView(title: wormupData[i].title, duration: "\(wormupData[i].duration)")
-//            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(viewItemTapped(_:)))
-//            cardView.addGestureRecognizer(tapGesture)
-//            cardView.tag = workoutsData[i].ID
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(viewWormupItemTapped(_:)))
+            warmupCardView.addGestureRecognizer(tapGesture)
+            warmupCardView.tag = wormupData[i].ID
             
             warmupCardView.translatesAutoresizingMaskIntoConstraints = false
             subheadingWarmUpView.translatesAutoresizingMaskIntoConstraints = false
@@ -144,9 +151,9 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
         // MARK: WORK OUT
         for i in 0..<workoutData.count {
             let workoutCardView = SubWorkoutCardView(title: workoutData[i].title, duration: "\(workoutData[i].duration)")
-//            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(viewItemTapped(_:)))
-//            cardView.addGestureRecognizer(tapGesture)
-//            cardView.tag = workoutsData[i].ID
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(viewWorkoutItemTapped(_:)))
+            workoutCardView.addGestureRecognizer(tapGesture)
+            workoutCardView.tag = workoutData[i].ID
 
             workoutCardView.translatesAutoresizingMaskIntoConstraints = false
             mainScrollView.addSubview(workoutCardView)
@@ -190,9 +197,9 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
         // MARK: COOL DOWN
         for i in 0..<cooldown.count {
             let coolDownCardView = SubWorkoutCardView(title: cooldown[i].title, duration: "\(cooldown[i].duration)")
-//            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(viewItemTapped(_:)))
-//            cardView.addGestureRecognizer(tapGesture)
-//            cardView.tag = workoutsData[i].ID
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(viewCooldownItemTapped(_:)))
+            coolDownCardView.addGestureRecognizer(tapGesture)
+            coolDownCardView.tag = cooldown[i].ID
 
             coolDownCardView.translatesAutoresizingMaskIntoConstraints = false
             mainScrollView.addSubview(coolDownCardView)
@@ -232,68 +239,7 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
             ])
         }
     }
-    
-    private func addWorkoutViews(for wormupData: [WorkoutList]) {
-        // Create and add workout card views to the scroll view
-        // Adjust the values and layout as per your requirements
         
-        let cardHeight: CGFloat = 60
-        let cardSpacing: CGFloat = 10
-        let numberOfCards = wormupData.count
-        
-        var previousCardView: SubWorkoutCardView?
-        
-        for i in 0..<numberOfCards {
-            let workoutCardView = SubWorkoutCardView(title: wormupData[i].title, duration: "\(wormupData[i].duration)")
-//            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(viewItemTapped(_:)))
-//            cardView.addGestureRecognizer(tapGesture)
-//            cardView.tag = workoutsData[i].ID
-            
-            workoutCardView.translatesAutoresizingMaskIntoConstraints = false
-            subheadingWarkoutView.translatesAutoresizingMaskIntoConstraints = false
-            mainScrollView.addSubview(subheadingWarkoutView)
-            mainScrollView.addSubview(workoutCardView)
-            
-            // Set up constraints for the card view
-            NSLayoutConstraint.activate([
-                subheadingWarmUpView.topAnchor.constraint(equalTo: mainScrollView.topAnchor),
-//                subheadingWarmUpView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-                subheadingWarmUpView.leadingAnchor.constraint(equalTo: mainScrollView.leadingAnchor),
-                subheadingWarmUpView.heightAnchor.constraint(equalToConstant: 40),
-                
-                workoutCardView.leadingAnchor.constraint(equalTo: subheadingWarmUpView.leadingAnchor),
-                workoutCardView.trailingAnchor.constraint(equalTo: subheadingWarmUpView.trailingAnchor),
-                workoutCardView.heightAnchor.constraint(equalToConstant: cardHeight),
-                workoutCardView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1)
-            ])
-            
-            if let previousCardView = previousCardView {
-                // Set up constraints for the vertical positioning of the card views
-                NSLayoutConstraint.activate([
-                    workoutCardView.topAnchor.constraint(equalTo: previousCardView.bottomAnchor, constant: cardSpacing)
-                ])
-            } else {
-                // This is the first card view, set its top constraint to the scroll view's top anchor
-                NSLayoutConstraint.activate([
-                    workoutCardView.topAnchor.constraint(equalTo: subheadingWarmUpView.bottomAnchor, constant: 10)
-                ])
-            }
-        
-            
-            previousCardView = workoutCardView
-            
-        }
-        
-        // Set the last card view's bottom constraint to the scroll view's bottom anchor
-        if let lastCardView = previousCardView {
-            NSLayoutConstraint.activate([
-                lastCardView.bottomAnchor.constraint(equalTo: mainScrollView.bottomAnchor, constant: -cardSpacing)
-            ])
-        }
-        
-
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
@@ -305,6 +251,48 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
     @objc func backButtonTapped() {
         // Handle back button tap event
         navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func viewWormupItemTapped(_ gestureRecognizer: UITapGestureRecognizer) {
+        guard let selectedView = gestureRecognizer.view,
+              let selectedItem = wormupList.first(where: { $0.ID == selectedView.tag }) else {
+            return
+        }
+        
+        // Perform navigation to the detail page with modal values
+        let vc = YouTubeViewController()
+        vc.workoutData = selectedItem // Set your modal values
+
+        // Present the detail view controller
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @objc func viewWorkoutItemTapped(_ gestureRecognizer: UITapGestureRecognizer) {
+        guard let selectedView = gestureRecognizer.view,
+              let selectedItem = workoutList.first(where: { $0.ID == selectedView.tag }) else {
+            return
+        }
+        
+        // Perform navigation to the detail page with modal values
+        let vc = YouTubeViewController()
+        vc.workoutData = selectedItem // Set your modal values
+
+        // Present the detail view controller
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @objc func viewCooldownItemTapped(_ gestureRecognizer: UITapGestureRecognizer) {
+        guard let selectedView = gestureRecognizer.view,
+              let selectedItem = cooldownList.first(where: { $0.ID == selectedView.tag }) else {
+            return
+        }
+        
+        // Perform navigation to the detail page with modal values
+        let vc = YouTubeViewController()
+        vc.workoutData = selectedItem // Set your modal values
+
+        // Present the detail view controller
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
 }

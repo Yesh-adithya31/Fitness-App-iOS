@@ -8,6 +8,7 @@
 import UIKit
 
 class SelectWeightViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+    private var weightVal = ""
     private var pickerView: UIPickerView!
     private let nextButton = CustomButton(title: "Next ▶", hasBackground: true, fontSize: .big)
     private let headingTextView = CustomTextView(title: "What’s your weight?", fontSize: .big)
@@ -55,7 +56,21 @@ func setupUI(){
 }
 
 @objc func didTapNext() {
-
+    DispatchQueue.main.asyncAfter(deadline: .now()) {
+        AuthService.shared.updateUser(valTitle: "weight", value: self.weightVal) { [weak self] wasWeight,error in
+            guard let self = self else { return }
+            if let error = error {
+                AlertManager.showFetchingUserError(on: self, with: error)
+                return
+            }
+            if wasWeight {
+                let vc = SelectGoalViewController()
+                self.navigationController?.pushViewController(vc, animated: true)
+            }else {
+                AlertManager.showRegistrationErrorAlert(on: self)
+            }
+        }
+    }
 }
 
     // MARK: - UIPickerViewDataSource
@@ -92,6 +107,7 @@ func setupUI(){
         
         let weight = Double(wholeNumber) + Double(decimalPart) / 10.0
         print("Selected weight: \(weight) kg")
+        weightVal = "\(weight) Kg"
     }
     
 func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {

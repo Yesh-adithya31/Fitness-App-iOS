@@ -165,16 +165,17 @@ import UIKit
 //    }
 //}
 
-class WorkoutView: UIView {
+class TimerView: UIView {
     private var timer: Timer?
     private var counter: Int = 0
+    private var duration: Int = 60
     private var repsCount: Int = 0
     private let timerLabel = UILabel()
     private let repsLabel = UILabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+        assignVal(for: duration)
         configureUI()
         addConstraints()
     }
@@ -187,15 +188,17 @@ class WorkoutView: UIView {
     }
     
     private func configureUI() {
-        backgroundColor = .white
+        backgroundColor = UIColor(named: "Black")
         
         timerLabel.translatesAutoresizingMaskIntoConstraints = false
-        timerLabel.font = UIFont.systemFont(ofSize: 40)
+        timerLabel.font = UIFont.systemFont(ofSize: 26)
+        timerLabel.text = "0 sec"
         timerLabel.textAlignment = .center
         timerLabel.textColor = UIColor(named: "Green")
         
         repsLabel.translatesAutoresizingMaskIntoConstraints = false
-        repsLabel.font = UIFont.systemFont(ofSize: 20)
+        repsLabel.font = UIFont.systemFont(ofSize: 26)
+        repsLabel.text = "Reps: 0"
         repsLabel.textAlignment = .center
         repsLabel.textColor = UIColor(named: "Green")
         
@@ -203,13 +206,18 @@ class WorkoutView: UIView {
         addSubview(repsLabel)
     }
     
+    func assignVal(for duration: Int){
+        self.duration = duration
+    }
+    
     private func addConstraints() {
         let constraints = [
-            timerLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            timerLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
+            timerLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
+            timerLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.5),
             
-            repsLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            repsLabel.topAnchor.constraint(equalTo: timerLabel.bottomAnchor, constant: 20)
+            repsLabel.leadingAnchor.constraint(equalTo: timerLabel.trailingAnchor),
+//            repsLabel.topAnchor.constraint(equalTo: timerLabel.bottomAnchor, constant: 20),
+            repsLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
         ]
         
         NSLayoutConstraint.activate(constraints)
@@ -217,21 +225,16 @@ class WorkoutView: UIView {
     
     func startWorkout() {
         timer?.invalidate() // Invalidate any existing timer
-        
         counter = 0
         repsCount = 0
-        
-        timerLabel.text = "0"
-        repsLabel.text = "Reps: 0"
-        
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
     }
     
     @objc private func updateTimer() {
         counter += 1
-        timerLabel.text = "\(counter)"
+        timerLabel.text = "\(counter) sec"
         
-        if counter > 60 {
+        if counter > duration {
             stopWorkout()
         } else if counter % 4 == 0 {
             repsCount += 1
@@ -243,7 +246,7 @@ class WorkoutView: UIView {
         }
     }
     
-    private func stopWorkout() {
+    func stopWorkout() {
         timer?.invalidate()
         timer = nil
     }
