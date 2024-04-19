@@ -97,7 +97,7 @@ class LoginController: UIViewController {
             return
         }
         
-        if !Validator.isValidPassword(for: loginRequest.password){
+        if Validator.isValidPassword(for: loginRequest.password){
             AlertManager.showInvalidPasswordAlert(on: self)
             loadingView.isHidden = true
             return

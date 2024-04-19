@@ -130,7 +130,7 @@ class RegisterController: UIViewController {
             return
         }
         
-        if !Validator.isValidPassword(for: registerUserRequest.password){
+        if Validator.isValidPassword(for: registerUserRequest.password){
             AlertManager.showInvalidPasswordAlert(on: self)
             loadingView.isHidden = true
             return
